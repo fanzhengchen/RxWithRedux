@@ -22,19 +22,33 @@ export function connect(selector = state => state) {
     return function wrapWithConnect(WrappedComponent) {
         return class Connect extends Component {
 
+
             constructor(props) {
                 super(props);
+                console.debug("props " + props);
                 this.state = {
-                    state$: {},
-                }
+                    state$: null,
+                    abc: this,
+                };
             }
 
-            // static contextTypes = {
-            //     state$: PropTypes.object.isRequired,
-            // };
+            static contextTypes = {
+                state$: PropTypes.object.isRequired,
+            };
 
             componentWillMount() {
-                this.subscription = this.state.state$.map(selector).subscribe(this.setState);
+                console.log("fuck   fffff", this.state);
+                // console.log(this.context);
+                // if (!this.context.state$) {
+                //     this.context.state$ = Rx.Observable.create();
+                // }
+
+                this.subscription = this.context.state$.map(selector).subscribe(this.setState.bind(this));
+            }
+
+            componentDidMount() {
+                console.log('did mount ===================');
+                console.log(this.context);
             }
 
             componentWillUnmount() {

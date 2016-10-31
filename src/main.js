@@ -22,7 +22,7 @@ import reducer$ from "./reducers";
 export default class MainComponent extends Component {
     render() {
         return (
-            <RxStateProvider state $={createState(reducer$)}>
+            <RxStateProvider state$={createState(reducer$)}>
                 <App/>
             </RxStateProvider>
 
