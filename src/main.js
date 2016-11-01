@@ -12,12 +12,6 @@ import {RxStateProvider, createState} from "./state/RxState";
 import App from "./components/App";
 import reducer$ from "./reducers";
 
-// ReactDOM.render(
-//   <RxStateProvider state$={createState(reducer$)}>
-//     <App />
-//   </RxStateProvider>,
-//   document.getElementById("root"),
-// );
 
 export default class MainComponent extends Component {
     render() {

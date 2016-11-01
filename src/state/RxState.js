@@ -25,7 +25,6 @@ export function connect(selector = state => state) {
 
             constructor(props) {
                 super(props);
-                console.debug("props " + props);
                 this.state = {
                     state$: null,
                     abc: this,
@@ -37,7 +36,6 @@ export function connect(selector = state => state) {
             };
 
             componentWillMount() {
-                console.log("fuck   fffff", this.state);
                 // console.log(this.context);
                 // if (!this.context.state$) {
                 //     this.context.state$ = Rx.Observable.create();
@@ -46,10 +44,6 @@ export function connect(selector = state => state) {
                 this.subscription = this.context.state$.map(selector).subscribe(this.setState.bind(this));
             }
 
-            componentDidMount() {
-                console.log('did mount ===================');
-                console.log(this.context);
-            }
 
             componentWillUnmount() {
                 this.subscription.unsubscribe();
